@@ -214,13 +214,8 @@ function get_model(; num_channels, downsample_times, num_branches, expansion_fac
 
   main_layers = Tuple(ResidualBlock(num_channels[i] => num_channels[i];
                                     deq_expand=expansion_factor, dropout_rate=dropout_rate,
-<<<<<<< HEAD
-                                    num_gn_groups=group_count,
-                                    n_big_kernels=big_kernels[i]) for i in 1:(num_branches))
-=======
                                     num_gn_groups=group_count, n_big_kernels=big_kernels[i],
                                     weight_norm=weight_norm) for i in 1:(num_branches))
->>>>>>> 010795195683b2d3c3e35c2e7bc391958d0343df
 
   mapping_layers = Matrix{Lux.AbstractExplicitLayer}(undef, num_branches, num_branches)
   for i in 1:num_branches, j in 1:num_branches
